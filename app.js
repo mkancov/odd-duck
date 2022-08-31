@@ -1,6 +1,6 @@
 'use strict';
 
-// global varriables
+// global variables
 
 let goatContainer = document.querySelector('section');
 let resultButton = document.querySelector('section + div');
@@ -14,21 +14,21 @@ let indexArray = [];
 
 // functional logic
 
-function idkYet(name, src) {
+function goat(name, src) {
   this.name = name;
   this.src = src;
   this.views = 0;
   this.clicks = 0;
-  idkYet.allidkYetsArray.push(this);
+  goat.allgoatsArray.push(this);
 }
 
-idkYet.allidkYetsArray = [];
+goat.allgoatsArray = [];
 
 function getRandomNumber() {
-  return Math.floor(Math.random() * idkYet.idkYetsArray.length);
+  return Math.floor(Math.random() * goat.goatsArray.length);
 }
 
-function renderidkYets() {
+function rendergoats() {
   
   while (indexArray.length < uniqueImageCount) {
     let randomNumber = getRandomNumber();
@@ -39,46 +39,46 @@ function renderidkYets() {
   /* refer to goat-array-includes.png in the facilitator/whiteboard-diagrams folder for a visualization of this */
   console.log(indexArray);
 
-  let idkYet1 = indexArray.shift();
-  let idkYet2 = indexArray.shift();
-  image1.src = idkYet.idkYetsArray[idkYet1].src;
-  image2.src = idkYet.idkYetsArray[idkYet2].src;
-  image1.alt = idkYet.idkYetsArray[idkYet1].name;
-  image2.alt = idkYet.idkYetsArray[idkYet2].name;
-  idkYet.idkYetsArray[idkYet1].views++;
-  idkYet.idkYetsArray[idkYet2].views++;
+  let goat1 = indexArray.shift();
+  let goat2 = indexArray.shift();
+  image1.src = goat.goatsArray[goat1].src;
+  image2.src = goat.goatsArray[goat2].src;
+  image1.alt = goat.goatsArray[goat1].name;
+  image2.alt = goat.goatsArray[goat2].name;
+  goat.goatsArray[goat1].views++;
+  goat.goatsArray[goat2].views++;
 }
 
-function handleidkYetClick(event) {
-  if (event.target === idkYetContainer) {
+function handlegoatClick(event) {
+  if (event.target === goatContainer) {
     alert('Please click an image');
   }
   clicks++;
-  let clickidkYet = event.target.alt;
-  for (let i = 0; i < idkYet.idkYetsArray.length; i++) {
-    if (clickidkYet === idkYet.idkYetsArray[i].name) {
-        idkYet.idkYetsArray[i].clicks++;
+  let clickgoat = event.target.alt;
+  for (let i = 0; i < goat.goatsArray.length; i++) {
+    if (clickgoat === goat.goatsArray[i].name) {
+        idkYet.goatsArray[i].clicks++;
       break;
     }
   }
   
   if (clicks === maxClicksAllowed) {
-    idkYetContainer.removeEventListener('click', handleidkYetClick);
-    idkYetContainer.className = 'no-voting';
+    goatContainer.removeEventListener('click', handlegoatClick);
+    goatContainer.className = 'no-voting';
     renderChart();
   } else {
-    renderidkYets();
+    rendergoats();
   }
 }
 
 function renderChart() {
-  let idkYetNames = [];
-  let idkYetLikes = [];
-  let idkyetViews = [];
-  for (let i = 0; i < idkYet.idkYetsArray.length; i++) {
-    idkYets.push(idkYet.idkYetsArray[i].name);
-    idkYetLikes.push(idkYet.idkYetsArray[i].clicks);
-    idkYetViews.push(idkYet.idkYetsArray[i].views);
+  let goatNames = [];
+  let goatLikes = [];
+  let goatViews = [];
+  for (let i = 0; i < goat.goatsArray.length; i++) {
+    goats.push(goat.goatsArray[i].name);
+    goatLikes.push(goat.goatsArray[i].clicks);
+    goatViews.push(goat.goatsArray[i].views);
   }
 
   /* refer to Chart.js > Chart Types > Bar Chart: 
@@ -86,10 +86,10 @@ function renderChart() {
   and refer to Chart.js > Getting Started > Getting Started:
   https://www.chartjs.org/docs/latest/getting-started/ */
   const data = {
-    labels: idkYetNames,
+    labels: goatNames,
     datasets: [{
       label: 'Likes',
-      data: idkYetLikes,
+      data: goatLikes,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)'
       ],
@@ -100,7 +100,7 @@ function renderChart() {
     },
     {
       label: 'Views',
-      data: idkYetViews,
+      data: goatViews,
       backgroundColor: [
         'rgba(255, 159, 64, 0.2)'
       ],
@@ -128,14 +128,14 @@ function renderChart() {
 
 // executable code
 
-new idkYet('Cruising Goat', './images/cruisin-goat.jpg');
-new idkYet('Float Your Goat', './images/float-your-goat.jpg');
-new idkYet('Goat Out of Hand', './images/goat-out-of-hand.jpg');
-new idkYet('Kissing Goat', './images/kissing-goat.jpg');
-new idkYet('Sassy Goat', './images/sassy-goat.jpg');
-new idkYet('Smiling Goat', './images/smiling-goat.jpg');
-new idkYet('Sweater Goat', './images/sweater-goat.jpg');
+new goat('Cruising Goat', 
+new goat('Float Your Goat', './images/float-your-goat.jpg');
+new goat('Goat Out of Hand', './images/goat-out-of-hand.jpg');
+new goat('Kissing Goat', './images/kissing-goat.jpg');
+new goat('Sassy Goat', './images/sassy-goat.jpg');
+new goat('Smiling Goat', './images/smiling-goat.jpg');
+new goat('Sweater Goat', './images/sweater-goat.jpg');
 
-renderidkYets();
+rendergoats();
 
-idkYetContainer.addEventListener('click', handleidkYetClick);
+goatContainer.addEventListener('click', handlegoatClick);
